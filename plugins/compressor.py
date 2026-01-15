@@ -14,7 +14,7 @@ from datetime import datetime as dt
 from telethon.errors.rpcerrorlist import MessageNotModifiedError
 from telethon.tl.types import DocumentAttributeVideo
 
-from pyJarvis.fns.tools import metadata
+from pyCore.fns.tools import metadata
 
 from . import (
     JARConfig,

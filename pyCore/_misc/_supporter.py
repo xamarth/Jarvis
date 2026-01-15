@@ -6,8 +6,8 @@ from pathlib import Path
 
 from telethon import events, types
 
-from pyJarvis._misc._decorators import compile_pattern, jarvis_cmd
-from pyJarvis._misc._wrappers import eod, eor
+from pyCore._misc._decorators import compile_pattern, jarvis_cmd
+from pyCore._misc._wrappers import eod, eor
 
 from .. import *
 from ..dB._core import LIST

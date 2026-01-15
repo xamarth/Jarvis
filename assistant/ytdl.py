@@ -12,14 +12,14 @@ from telethon.errors.rpcerrorlist import FilePartLengthInvalidError, MediaEmptyE
 from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
 from telethon.tl.types import InputWebDocument as wb
 
-from pyJarvis.fns.helper import (
+from pyCore.fns.helper import (
     bash,
     fast_download,
     humanbytes,
     numerize,
     time_formatter,
 )
-from pyJarvis.fns.ytdl import dler, get_buttons, get_formats
+from pyCore.fns.ytdl import dler, get_buttons, get_formats
 
 from . import LOGS, asst, callback, in_pattern, udB
 

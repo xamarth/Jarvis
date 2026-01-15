@@ -9,7 +9,7 @@ import os
 from telegraph import upload_file as uf
 from telethon.utils import pack_bot_file_id
 
-from pyJarvis.fns.tools import create_tl_btn, get_msg_button
+from pyCore.fns.tools import create_tl_btn, get_msg_button
 
 from . import HNDLR, get_string, mediainfo, jarvis_cmd
 from ._inline import something

@@ -6,7 +6,7 @@ if not run_as_module:
     from ..exceptions import RunningAsFunctionLibError
 
     raise RunningAsFunctionLibError(
-        "You are running 'pyJarvis' as a functions lib, not as run module. You can't access this folder.."
+        "You are running 'pyCore' as a functions lib, not as run module. You can't access this folder.."
     )
 
 from .. import *

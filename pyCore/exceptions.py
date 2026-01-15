@@ -5,7 +5,7 @@ Exceptions which can be raised by py-Jarvis Itself.
 """
 
 
-class pyJarvisError(Exception):
+class pyCoreError(Exception):
     ...
 
 
@@ -13,5 +13,5 @@ class DependencyMissingError(ImportError):
     ...
 
 
-class RunningAsFunctionLibError(pyJarvisError):
+class RunningAsFunctionLibError(pyCoreError):
     ...

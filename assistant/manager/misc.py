@@ -4,10 +4,11 @@ import random
 
 import aiohttp
 
-from pyJarvis.dB import DEVLIST
-from pyJarvis.fns.admins import admin_check
+from pyCore.dB import DEVLIST
+from pyCore.fns.admins import admin_check
 
 from . import *
+
 
 @asst_cmd(pattern="decide")
 async def dheh(e):

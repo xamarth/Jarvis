@@ -29,7 +29,7 @@ from telethon.errors.rpcerrorlist import (
 from telethon.events import MessageEdited, NewMessage
 from telethon.utils import get_display_name
 
-from pyJarvis.exceptions import DependencyMissingError
+from pyCore.exceptions import DependencyMissingError
 from strings import get_string
 
 from .. import *
@@ -73,6 +73,21 @@ def jarvis_cmd(
 
     def decor(dec):
         async def wrapp(jar):
+            if udB.get_key("COMMAND_LOGGER"):
+                user_id = jar.sender_id
+                chat_id = jar.chat_id
+                command_name = pattern if pattern else jar.text.split()[0].lstrip(HNDLR)
+                chat_name = get_display_name(jar.chat)
+                LOGS.info(f"Command '{command_name}' executed by user ID {user_id} in chat {chat_id} ({chat_name})")
+                log_channel = udB.get_key("LOG_CHANNEL")
+                if log_channel:
+                    try:
+                        await asst.send_message(
+                            log_channel,
+                            f"Command '{command_name}' executed by user ID {user_id} in chat {chat_id} ({chat_name})"
+                        )
+                    except Exception as e:
+                        LOGS.warning(f"Failed to send command log to log channel {log_channel}: {e}")           
             if not jar.out:
                 if owner_only:
                     return
@@ -143,10 +158,10 @@ def jarvis_cmd(
                     udB.get_key("LOG_CHANNEL"),
                     "Session String expired, create new session from 👇",
                     buttons=[
-                        Button.url("Bot", "t.me/ragdoIIBot?start="),
+                        Button.url("Bot", "t.me/unarcBot?start="),
                         Button.url(
                             "Repl",
-                            "t.me/ragdoIIBot?start=",
+                            "t.me/unarcBot?start=",
                         ),
                     ],
                 )

@@ -7,8 +7,8 @@ from telethon.errors.rpcerrorlist import (
 )
 from telethon.tl.custom import Button
 
-from pyJarvis.dB._core import HELP, LIST
-from pyJarvis.fns.tools import cmd_regex_replace
+from pyCore.dB._core import HELP, LIST
+from pyCore.fns.tools import cmd_regex_replace
 
 from . import HNDLR, LOGS, OWNER_NAME, asst, get_string, inline_pic, udB, jarvis_cmd
 

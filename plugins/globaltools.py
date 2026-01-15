@@ -40,9 +40,9 @@ from telethon.tl.functions.channels import EditAdminRequest
 from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 from telethon.tl.types import ChatAdminRights, User
 
-from pyJarvis.dB import DEVLIST
-from pyJarvis.dB.base import KeyManager
-from pyJarvis.dB.gban_mute_db import (
+from pyCore.dB import DEVLIST
+from pyCore.dB.base import KeyManager
+from pyCore.dB.gban_mute_db import (
     gban,
     gmute,
     is_gbanned,
@@ -51,7 +51,7 @@ from pyJarvis.dB.gban_mute_db import (
     ungban,
     ungmute,
 )
-from pyJarvis.fns.tools import create_tl_btn, format_btn, get_msg_button
+from pyCore.fns.tools import create_tl_btn, format_btn, get_msg_button
 
 from . import (
     HNDLR,

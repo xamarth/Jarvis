@@ -3,13 +3,13 @@ import sys
 from glob import glob
 from typing import Any, Dict, List, Union
 
-from pyJarvis import *
-from pyJarvis.fns.tools import translate
+from pyCore import *
+from pyCore.fns.tools import translate
 
 try:
     from yaml import safe_load
 except ModuleNotFoundError:
-    from pyJarvis.fns.tools import safe_load
+    from pyCore.fns.tools import safe_load
 
 JARConfig.lang = udB.get_key("language") or os.getenv("LANGUAGE", "en")
 

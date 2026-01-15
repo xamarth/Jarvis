@@ -3,6 +3,9 @@
 """
 ✘ Commands Available -
 
+• `{i}circle`
+    Reply to a audio song or gif to get video note.
+
 • `{i}ls`
     Get all the Files inside a Directory.
 
@@ -33,6 +36,11 @@ import secrets
 from asyncio.exceptions import TimeoutError as AsyncTimeout
 
 try:
+    import cv2
+except ImportError:
+    cv2 = None
+
+try:
     from playwright.async_api import async_playwright
 except ImportError:
     async_playwright = None
@@ -48,7 +56,7 @@ from telethon.tl.types import (
     DocumentAttributeVideo,
 )
 
-from pyJarvis.fns.tools import metadata, translate
+from pyCore.fns.tools import metadata, translate
 
 from . import (
     HNDLR,
@@ -159,6 +167,71 @@ async def _(jar):
         text = "ㅤㅤㅤㅤㅤㅤㅤ"
     await jar.eor(f"[{text}]({input_})", link_preview=False)
 
+@jarvis_cmd(
+    pattern="circle$",
+)
+async def _(e):
+    reply = await e.get_reply_message()
+    if not (reply and reply.media):
+        return await e.eor("`Reply to a gif or audio file only.`")
+    if "audio" in mediainfo(reply.media):
+        msg = await e.eor("`Downloading...`")
+        try:
+            bbbb = await reply.download_media(thumb=-1)
+        except TypeError:
+            bbbb = JARConfig.thumb
+        im = cv2.imread(bbbb)
+        dsize = (512, 512)
+        output = cv2.resize(im, dsize, interpolation=cv2.INTER_AREA)
+        cv2.imwrite("img.jpg", output)
+        thumb = "img.jpg"
+        audio, _ = await e.client.fast_downloader(reply.document)
+        await msg.edit("`Creating video note...`")
+        await bash(
+            f'ffmpeg -i "{thumb}" -i "{audio.name}" -preset ultrafast -c:a libmp3lame -ab 64 circle.mp4 -y'
+        )
+        await msg.edit("`Uploading...`")
+        data = await metadata("circle.mp4")
+        file, _ = await e.client.fast_uploader("circle.mp4", to_delete=True)
+        await e.client.send_file(
+            e.chat_id,
+            file,
+            thumb=thumb,
+            reply_to=reply,
+            attributes=[
+                DocumentAttributeVideo(
+                    duration=min(data["duration"], 60),
+                    w=512,
+                    h=512,
+                    round_message=True,
+                )
+            ],
+        )
+
+        await msg.delete()
+        [os.remove(k) for k in [audio.name, thumb]]
+    elif mediainfo(reply.media) == "gif" or mediainfo(reply.media).startswith("video"):
+        msg = await e.eor("**Creating video note**")
+        file = await reply.download_media("resources/downloads/")
+        if file.endswith(".webm"):
+            nfile = await con.ffmpeg_convert(file, "file.mp4")
+            os.remove(file)
+            file = nfile
+        if file:
+            await e.client.send_file(
+                e.chat_id,
+                file,
+                video_note=True,
+                thumb=JARConfig.thumb,
+                reply_to=reply,
+            )
+            os.remove(file)
+        await msg.delete()
+
+    else:
+        await e.eor("`Reply to a gif or audio file only.`")
+
+
 
 FilesEMOJI = {
     "py": "🐍",
@@ -258,42 +331,83 @@ async def _(e):
             await e.reply(f"`{e.text}`", file=out_file, thumb=JARConfig.thumb)
         await e.delete()
 
+def sanga_seperator(sanga_list):
+    string = "".join(info[info.find("\n") + 1 :] for info in sanga_list)
+    string = re.sub(r"^$\n", "", string, flags=re.MULTILINE)
+    name, username = string.split("Usernames**")
+    name = name.split("Names")[1]
+    return name, username
+
+
+def mentionuser(name, userid):
+    return f"[{name}](tg://user?id={userid})"
+
 
 @jarvis_cmd(
-    pattern="sg( (.*)|$)",
+    pattern="sg(|u)(?:\\s|$)([\\s\\S]*)",
+    fullsudo=True,
 )
-async def sangmata_beta(e):
-    args = e.pattern_match.group(2)
-    reply = await e.get_reply_message()
-    if args:
-        try:
-            user_id = await e.client.parse_id(args)
-        except ValueError:
-            user_id = args
-    elif reply:
-        user_id = reply.sender_id
-    else:
-        return await e.eor("Use this command with reply or give Username/id...")
+async def sangmata(event):
+    "To get name/username history."
+    cmd = event.pattern_match.group(1)
+    user = event.pattern_match.group(2)
+    reply = await event.get_reply_message()
+    if not user and reply:
+        user = str(reply.sender_id)
+    if not user:
+        await event.edit(
+            "`Reply to  user's text message to get name/username history or give userid/username`",
+        )
+        await asyncio.sleep(10)
+        return await event.delete()
 
-    lol = await e.eor(get_string("com_1"))
     try:
-        async with e.client.conversation(CHAT, total_timeout=15) as conv:
-            msg = await conv.send_message(f"allhistory {user_id}")
-            response = await conv.get_response()
-            if response and "no data available" in response.text.lower():
-                await lol.edit("okbie, No records found for this user")
-            elif str(user_id) in response.message:
-                await lol.edit(response.text)
-    except YouBlockedUserError:
-        return await lol.edit(f"Please unblock @{CHAT} and try again.")
-    except TimeoutError:
-        await lol.edit("Bot didn't respond in time.")
-    except Exception as ex:
-        LOGS.exception(ex)
-        await lol.edit(f"Error: {ex}")
-    finally:
-        await lol.edit(response.text)
-        await e.client.send_read_acknowledge(CHAT)
+        if user.isdigit():
+            userinfo = await jarvis_bot.get_entity(int(user))
+        else:
+            userinfo = await jarvis_bot.get_entity(user)
+    except ValueError:
+        userinfo = None
+    if not isinstance(userinfo, types.User):
+        await event.edit("`Can't fetch the user...`")
+        await asyncio.sleep(10)
+        return await event.delete()
+
+    await event.edit("`Processing...`")
+    async with event.client.conversation("@SangMata_beta_bot") as conv:
+        try:
+            await conv.send_message(f"{userinfo.id}")
+        except YouBlockedUserError:
+            await catub(unblock("SangMata_beta_bot"))
+            await conv.send_message(f"{userinfo.id}")
+        responses = []
+        while True:
+            try:
+                response = await conv.get_response(timeout=2)
+            except asyncio.TimeoutError:
+                break
+            responses.append(response.text)
+        await event.client.send_read_acknowledge(conv.chat_id)
+
+    if not responses:
+        await event.edit("`Bot can't fetch results`")
+        await asyncio.sleep(10)
+        await event.delete()
+    if "No records found" in responses or "No data available" in responses:
+        await event.edit("`The user doesn't have any record`")
+        await asyncio.sleep(10)
+        await event.delete()
+
+    names, usernames = sanga_seperator(responses)
+    check = (usernames, "Username") if cmd == "u" else (names, "Name")
+    user_name = (
+        f"{userinfo.first_name} {userinfo.last_name}"
+        if userinfo.last_name
+        else userinfo.first_name
+    )
+    output = f"**➜ User Info :**  {mentionuser(user_name, userinfo.id)}\n**➜ {check[1]} History :**\n{check[0]}"
+    await event.edit(output)
+
 
 
 @jarvis_cmd(pattern="webshot( (.*)|$)")

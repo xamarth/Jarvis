@@ -16,7 +16,7 @@ from telethon.errors.rpcerrorlist import (
     ChatSendMediaForbiddenError,
 )
 
-from pyJarvis.version import __version__ as JarVer
+from pyCore.version import __version__ as JarVer
 
 from . import HOSTED_ON, LOGS
 
@@ -79,7 +79,7 @@ The Jarvis Userbot
   ◍ Telethon - {}
 """
 
-in_alive = "{}\n\n🌀 <b>Jarvis Version -><b> <code>{}</code>\n🌀 <b>PyJarvis -></b> <code>{}</code>\n🌀 <b>Python -></b> <code>{}</code>\n🌀 <b>Uptime -></b> <code>{}</code>\n🌀 <b>Branch -></b>[ {} ]\n\n• <b>Join @MyJarvis</b>"
+in_alive = "{}\n\n🌀 <b>Jarvis Version -><b> <code>{}</code>\n🌀 <b>pyCore -></b> <code>{}</code>\n🌀 <b>Python -></b> <code>{}</code>\n🌀 <b>Uptime -></b> <code>{}</code>\n🌀 <b>Branch -></b>[ {} ]\n\n• <b>Join @MyJarvis</b>"
 
 
 @callback("alive")
@@ -209,7 +209,7 @@ async def restartbt(jar):
     if len(sys.argv) > 1:
         os.execl(sys.executable, sys.executable, "main.py")
     else:
-        os.execl(sys.executable, sys.executable, "-m", "pyJarvis")
+        os.execl(sys.executable, sys.executable, "-m", "pyCore")
 
 
 @jarvis_cmd(
@@ -313,7 +313,7 @@ async def _(e):
         await bash("git pull -f && pip3 install -r requirements.txt")
         callback()
         await xx.edit(get_string("upd_7"))
-        os.execl(sys.executable, "python3", "-m", "pyJarvis")
+        os.execl(sys.executable, "python3", "-m", "pyCore")
         # return
     m = await updater()
     branch = (Repo.init()).active_branch

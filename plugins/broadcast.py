@@ -9,7 +9,7 @@ import io
 
 from telethon.utils import get_display_name
 
-from pyJarvis.dB.base import KeyManager
+from pyCore.dB.base import KeyManager
 
 from . import HNDLR, LOGS, eor, get_string, udB, jarvis_bot, jarvis_cmd
 

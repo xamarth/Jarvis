@@ -13,8 +13,8 @@ from telethon.tl.alltlobjects import LAYER, tlobjects
 from telethon.tl.types import DocumentAttributeAudio as Audio
 from telethon.tl.types import InputWebDocument as wb
 
-from pyJarvis.fns.misc import google_search
-from pyJarvis.fns.tools import (
+from pyCore.fns.misc import google_search
+from pyCore.fns.tools import (
     _webupload_cache,
     async_searcher,
     get_ofox,

@@ -34,8 +34,8 @@ except ImportError:
     cv2 = None
 from telethon.tl.types import DocumentAttributeAudio
 
-from pyJarvis.fns.misc import google_search
-from pyJarvis.fns.tools import get_google_images, saavn_search
+from pyCore.fns.misc import google_search
+from pyCore.fns.tools import get_google_images, saavn_search
 
 from . import LOGS, async_searcher, con, eod, fast_download, get_string, jarvis_cmd
 

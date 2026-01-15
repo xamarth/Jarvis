@@ -26,8 +26,8 @@
 from telethon import events
 from telethon.utils import get_display_name
 
-from pyJarvis.dB.mute_db import is_muted, mute, unmute
-from pyJarvis.fns.admins import ban_time
+from pyCore.dB.mute_db import is_muted, mute, unmute
+from pyCore.fns.admins import ban_time
 
 from . import asst, eod, get_string, inline_mention, jarvis_bot, jarvis_cmd
 

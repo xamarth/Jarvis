@@ -98,7 +98,7 @@ check_python() {
 }
 
 clone_repo() {
-    # check if pyjarvis, startup, plugins folders exist
+    # check if pyCore, startup, plugins folders exist
     cd $DIR
     if [ -d $DIR ]; then
         if [ -d $DIR/.git ]; then
@@ -190,7 +190,7 @@ dep_install() {
 
 main() {
     echo -e "Starting jarvis Setup..."
-    if [ -d "pyJarvis" ] && [ -d "resources" ] && [ -d "plugins" ]; then
+    if [ -d "pyCore" ] && [ -d "resources" ] && [ -d "plugins" ]; then
         DIR=$CURRENT_DIR
     fi
     if [ -f $ENV_FILE_PATH ]

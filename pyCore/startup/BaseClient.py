@@ -123,8 +123,8 @@ class JarvisClient(TelegramClient):
                         with contextlib.suppress(FileNotFoundError):
                             os.remove(file)
                     return files["raw_file"], time.time() - start_time
-        from pyJarvis.fns.FastTelethon import upload_file
-        from pyJarvis.fns.helper import progress
+        from pyCore.fns.FastTelethon import upload_file
+        from pyCore.fns.helper import progress
 
         raw_file = None
         while not raw_file:
@@ -171,8 +171,8 @@ class JarvisClient(TelegramClient):
 
         from telethon.tl.types import DocumentAttributeFilename
 
-        from pyJarvis.fns.FastTelethon import download_file
-        from pyJarvis.fns.helper import progress
+        from pyCore.fns.FastTelethon import download_file
+        from pyCore.fns.helper import progress
 
         start_time = time.time()
         # Auto-generate Filename

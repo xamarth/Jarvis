@@ -52,7 +52,7 @@ class GDriveManager:
         try:
             _auth_flow = OAuth2WebServerFlow(
                 udB.get_key("GDRIVE_CLIENT_ID")
-                or "",
+                or "458306970678-jhfbv6o5sf1ar63o1ohp4c0grblp8qba.apps.googleusercontent.com",
                 udB.get_key("GDRIVE_CLIENT_SECRET")
                 or "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",
                 self.gdrive_creds["oauth_scope"],

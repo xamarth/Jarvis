@@ -13,9 +13,9 @@ from telethon.tl.functions.messages import GetFullChatRequest, SetHistoryTTLRequ
 from telethon.tl.types import InputMessagesFilterPinned
 from telethon.utils import get_display_name
 
-from pyJarvis.dB import DEVLIST
-from pyJarvis.fns.admins import ban_time
-from pyJarvis.fns.info import get_uinfo
+from pyCore.dB import DEVLIST
+from pyCore.fns.admins import ban_time
+from pyCore.fns.info import get_uinfo
 
 from . import HNDLR, LOGS, eod, eor, get_string, inline_mention, types, jarvis_cmd
 

@@ -38,7 +38,7 @@ if run_as_module:
     from telethon import __version__
     from telethon.tl.alltlobjects import LAYER
 
-    from ..version import __version__ as __pyJarvis__
+    from ..version import __version__ as __pyCore__
     from ..version import jarvis_version
 
     file = f"jarvis{sys.argv[6]}.log" if len(sys.argv) > 6 else "jarvis.log"
@@ -47,7 +47,7 @@ if run_as_module:
         os.remove(file)
 
     HOSTED_ON = where_hosted()
-    LOGS = getLogger("pyJarLogs")
+    LOGS = getLogger("pyCoreLogs")
     TelethonLogger = getLogger("Telethon")
     TelethonLogger.setLevel(INFO)
 
@@ -84,7 +84,7 @@ if run_as_module:
     )
 
     LOGS.info(f"Python version - {platform.python_version()}")
-    LOGS.info(f"py-Jarvis Version - {__pyJarvis__}")
+    LOGS.info(f"py-Jarvis Version - {__pyCore__}")
     LOGS.info(f"Telethon Version - {__version__} [Layer: {LAYER}]")
     LOGS.info(f"Jarvis Version - {jarvis_version} [{HOSTED_ON}]")
 

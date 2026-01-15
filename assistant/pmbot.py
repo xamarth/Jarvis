@@ -11,9 +11,9 @@ from telethon.tl.functions.messages import GetFullChatRequest
 from telethon.tl.types import Channel, Chat
 from telethon.utils import get_display_name
 
-from pyJarvis.dB.base import KeyManager
-from pyJarvis.dB.botchat_db import *
-from pyJarvis.fns.helper import inline_mention
+from pyCore.dB.base import KeyManager
+from pyCore.dB.botchat_db import *
+from pyCore.fns.helper import inline_mention
 
 from . import *
 

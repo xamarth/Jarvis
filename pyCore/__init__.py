@@ -94,10 +94,10 @@ if run_as_module:
     DUAL_HNDLR = udB.get_key("DUAL_HNDLR") or "/"
     SUDO_HNDLR = udB.get_key("SUDO_HNDLR") or HNDLR
 else:
-    print("pyJarvis 2024 © myjarvis.t.me")
+    print("pyCore 2024 © myjarvis.t.me")
 
     from logging import getLogger
 
-    LOGS = getLogger("pyJarvis")
+    LOGS = getLogger("pyCore")
 
     jarvis_bot = asst = udB = vcClient = None

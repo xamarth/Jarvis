@@ -7,14 +7,14 @@ from telethon.errors.rpcerrorlist import UserNotParticipantError
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.utils import get_display_name
 
-from pyJarvis.dB import stickers
-from pyJarvis.dB.echo_db import check_echo
-from pyJarvis.dB.forcesub_db import get_forcesetting
-from pyJarvis.dB.gban_mute_db import is_gbanned
-from pyJarvis.dB.greetings_db import get_goodbye, get_welcome, must_thank
-from pyJarvis.dB.nsfw_db import is_profan
-from pyJarvis.fns.helper import inline_mention
-from pyJarvis.fns.tools import async_searcher, create_tl_btn, get_chatbot_reply
+from pyCore.dB import stickers
+from pyCore.dB.echo_db import check_echo
+from pyCore.dB.forcesub_db import get_forcesetting
+from pyCore.dB.gban_mute_db import is_gbanned
+from pyCore.dB.greetings_db import get_goodbye, get_welcome, must_thank
+from pyCore.dB.nsfw_db import is_profan
+from pyCore.fns.helper import inline_mention
+from pyCore.fns.tools import async_searcher, create_tl_btn, get_chatbot_reply
 
 try:
     from ProfanityDetector import detector

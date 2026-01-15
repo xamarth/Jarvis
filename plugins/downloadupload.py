@@ -13,8 +13,8 @@ from datetime import datetime as dt
 from aiohttp.client_exceptions import InvalidURL
 from telethon.errors.rpcerrorlist import MessageNotModifiedError
 
-from pyJarvis.fns.helper import time_formatter
-from pyJarvis.fns.tools import get_chat_and_msgid, set_attributes
+from pyCore.fns.helper import time_formatter
+from pyCore.fns.tools import get_chat_and_msgid, set_attributes
 
 from . import (
     LOGS,

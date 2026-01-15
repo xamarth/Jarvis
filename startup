@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
-# Jarvis - UserBot
+
+# xamarth
 
 echo "
 
-      Visit @MyJarvis for updates!!
+      Made with ❤️ by @xamarth | @riotoreo
 
 "
 
-python3 -m pyJarvis
+if [ -f .env ] ; then  set -o allexport; source .env; set +o allexport ; fi
+if [ $SESSION1 ] ; then python3 multi_client.py ; else python3 -m pyCore ; fi

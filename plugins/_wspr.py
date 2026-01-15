@@ -23,7 +23,7 @@ from . import (
     jarvis_cmd,
 )
 
-buddhhu = {}
+xamarth = {}
 
 
 @jarvis_cmd(
@@ -100,7 +100,7 @@ async def _(e):
         text=get_string("wspr_1").format(us),
         buttons=button,
     )
-    buddhhu.update({e.id: [logi.id, iuser, desc]})
+    xamarth.update({e.id: [logi.id, iuser, desc]})
     await e.answer([sur])
 
 
@@ -176,9 +176,9 @@ async def _(e):
 )
 async def _(e):
     ids = int(e.pattern_match.group(1).strip().decode("UTF-8"))
-    if buddhhu.get(ids):
-        if e.sender_id in buddhhu[ids]:
-            await e.answer(buddhhu[ids][-1], alert=True)
+    if xamarth.get(ids):
+        if e.sender_id in xamarth[ids]:
+            await e.answer(xamarth[ids][-1], alert=True)
         else:
             await e.answer("Not For You", alert=True)
     else:
@@ -188,9 +188,9 @@ async def _(e):
 @callback(re.compile("del_(.*)"))
 async def _(e):
     ids = int(e.pattern_match.group(1).strip().decode("UTF-8"))
-    if buddhhu.get(ids):
-        if e.sender_id in buddhhu[ids]:
-            buddhhu.pop(ids)
+    if xamarth.get(ids):
+        if e.sender_id in xamarth[ids]:
+            xamarth.pop(ids)
             try:
                 await e.edit(get_string("wspr_2"))
             except MessageNotModifiedError:

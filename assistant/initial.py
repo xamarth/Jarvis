@@ -26,7 +26,7 @@ STRINGS = {
 -> [Also Check](https://t.me/MyJarvis/14)
 
 **• To Know About Updates**
-  - Join @MyJarvis.""",
+  - Join @RiotOreO.""",
     4: f"""• `To Know All Available Commands`
 
   - `{HNDLR}help`

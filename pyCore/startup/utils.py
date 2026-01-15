@@ -27,7 +27,7 @@ def load_addons(plugin_name):
     base_name = plugin_name.split("/")[-1].split("\\")[-1].replace(".py", "")
     if base_name.startswith("__"):
         return
-    from pyJarvis import fns
+    from pyCore import fns
 
     from .. import HNDLR, LOGS, asst, udB, jarvis_bot
     from .._misc import _supporter as config
@@ -43,7 +43,7 @@ def load_addons(plugin_name):
     mod = util.module_from_spec(spec)
     for path in configPaths:
         modules[path] = config
-    modules["pyJarvis.functions"] = fns
+    modules["pyCore.functions"] = fns
     mod.LOG_CHANNEL = udB.get_key("LOG_CHANNEL")
     mod.udB = udB
     mod.asst = asst

@@ -301,7 +301,7 @@ async def updater():
 
 
 # ----------------Fast Upload/Download----------------
-# @1danish_00 @new-dev0 @buddhhu
+
 
 
 async def uploader(file, name, taime, event, msg):
@@ -343,7 +343,7 @@ async def downloader(filename, file, event, taime, msg):
 
 
 # ~~~~~~~~~~~~~~~Async Searcher~~~~~~~~~~~~~~~
-# @buddhhu
+
 
 
 async def async_searcher(
@@ -386,7 +386,6 @@ async def async_searcher(
 
 
 # ~~~~~~~~~~~~~~~~~~~~DDL Downloader~~~~~~~~~~~~~~~~~~~~
-# @buddhhu @new-dev0
 
 
 async def download_file(link, name, validate=False):
@@ -556,7 +555,7 @@ async def progress(current, total, event, start, type_of_ps, file_name=None):
 
 
 # ------------------System\\Heroku stuff----------------
-# @xditya @sppidy @techierror
+# @xamarth
 
 
 async def restart(jar=None):
@@ -576,13 +575,13 @@ async def restart(jar=None):
             LOGS.exception(er)
     else:
         if len(sys.argv) == 1:
-            os.execl(sys.executable, sys.executable, "-m", "pyJarvis")
+            os.execl(sys.executable, sys.executable, "-m", "pyCore")
         else:
             os.execl(
                 sys.executable,
                 sys.executable,
                 "-m",
-                "pyJarvis",
+                "pyCore",
                 sys.argv[1],
                 sys.argv[2],
                 sys.argv[3],

@@ -36,7 +36,7 @@ import pytz
 from bs4 import BeautifulSoup as bs
 from telethon.tl.types import DocumentAttributeVideo
 
-from pyJarvis.fns.tools import get_google_images, metadata
+from pyCore.fns.tools import get_google_images, metadata
 
 from . import (
     HNDLR,

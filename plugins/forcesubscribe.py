@@ -29,7 +29,7 @@ from telethon.tl.types import (
     User,
 )
 
-from pyJarvis.dB.forcesub_db import add_forcesub, get_forcesetting, rem_forcesub
+from pyCore.dB.forcesub_db import add_forcesub, get_forcesetting, rem_forcesub
 
 from . import (
     LOGS,

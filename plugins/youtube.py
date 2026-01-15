@@ -16,7 +16,7 @@
    Search and download video from youtube.
 """
 
-from pyJarvis.fns.ytdl import download_yt, get_yt_link
+from pyCore.fns.ytdl import download_yt, get_yt_link
 
 from . import get_string, requests, jarvis_cmd
 

@@ -15,8 +15,8 @@ import os
 import time
 from datetime import datetime as dt
 
-from pyJarvis.fns.misc import rotate_image
-from pyJarvis.fns.tools import make_html_telegraph
+from pyCore.fns.misc import rotate_image
+from pyCore.fns.tools import make_html_telegraph
 
 from . import (
     LOGS,

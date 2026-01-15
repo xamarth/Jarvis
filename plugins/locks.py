@@ -12,7 +12,7 @@
 
 from telethon.tl.functions.messages import EditChatDefaultBannedRightsRequest
 
-from pyJarvis.fns.admins import lock_unlock
+from pyCore.fns.admins import lock_unlock
 
 from . import jarvis_cmd
 

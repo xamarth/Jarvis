@@ -11,7 +11,7 @@ import io
 from telethon.errors.rpcerrorlist import FloodWaitError
 from telethon.utils import get_display_name, get_peer_id
 
-from pyJarvis.dB.base import KeyManager
+from pyCore.dB.base import KeyManager
 
 from . import LOGS, asst, eor, events, get_string, udB, jarvis_bot, jarvis_cmd
 
@@ -56,7 +56,7 @@ async def _(e):
         LOGS.exception(er)
         await z.edit(get_string("cha_1"))
         return
-    async for msg in e.client.iter_messages(int(c), reverse=True):
+    async for msg in e.client.iter_messages(int(c), reverse=True, limit=None):
         try:
             await asyncio.sleep(2)
             await e.client.send_message(int(d), msg)

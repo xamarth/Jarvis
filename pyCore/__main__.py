@@ -32,7 +32,7 @@ def main():
     ):
         jarvis_bot.run_in_loop(bash("bash installer.sh"))
 
-        os.execl(sys.executable, sys.executable, "-m", "pyJarvis")
+        os.execl(sys.executable, sys.executable, "-m", "pyCore")
 
     jarvis_bot.run_in_loop(startup_stuff())
 
@@ -79,12 +79,6 @@ def main():
     # Send/Ignore Deploy Message..
     if not udB.get_key("LOG_OFF"):
         jarvis_bot.run_in_loop(ready())
-
-    # TODO: Announcement API IS DOWN
-    # if AsyncIOScheduler:
-    #     scheduler = AsyncIOScheduler()
-    #     scheduler.add_job(fetch_ann, "interval", minutes=12 * 60)
-    #     scheduler.start()
 
     # Edit Restarting Message (if It's restarting)
     jarvis_bot.run_in_loop(WasItRestart(udB))

@@ -20,8 +20,8 @@ try:
     from PIL import Image
 except ImportError:
     Image = None
-from pyJarvis.fns.misc import unsplashsearch
-from pyJarvis.fns.tools import LogoHelper
+from pyCore.fns.misc import unsplashsearch
+from pyCore.fns.tools import LogoHelper
 
 from . import OWNER_ID, OWNER_NAME, download_file, get_string, mediainfo, jarvis_cmd
 

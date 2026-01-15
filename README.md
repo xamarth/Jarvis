@@ -51,12 +51,12 @@ One of the following database:
   `cd jarvis`
 - Install the requirements:
   `pip install -r requirements.txt`
-- Fill your details in a `.env` file, as given in [`.env.sample`](https://github.com/btwOreO/Jarvis/blob/main/.env.sample).
+- Fill your details in a `.env` file, as given in [`.env.sample`](https://github.com/xamarth/Jarvis/blob/main/.env.sample).
 - Run the Bot:
   - Linux Users:
    `bash startup`
   - Windows Users:
-    `python -m pyJarvis`
+    `python -m pyCore`
 
 </details>
 

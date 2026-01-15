@@ -9,7 +9,7 @@
 
 import os
 
-from pyJarvis.fns.tools import _webupload_cache
+from pyCore.fns.tools import _webupload_cache
 
 from . import Button, asst, get_string, jarvis_cmd
 

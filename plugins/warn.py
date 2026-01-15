@@ -20,7 +20,7 @@
 
 """
 
-from pyJarvis.dB.warn_db import add_warn, reset_warn, warns
+from pyCore.dB.warn_db import add_warn, reset_warn, warns
 
 from . import eor, get_string, inline_mention, udB, jarvis_cmd
 

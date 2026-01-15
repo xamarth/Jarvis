@@ -4,7 +4,7 @@ import re
 
 from telethon.errors.rpcerrorlist import UserNotParticipantError
 
-from pyJarvis import _jar_cache
+from pyCore import _jar_cache
 
 from . import *
 

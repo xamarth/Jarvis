@@ -15,7 +15,7 @@
 
 from telethon.tl.types import User
 
-from pyJarvis._misc import sudoers
+from pyCore._misc import sudoers
 
 from . import get_string, inline_mention, udB, jarvis_bot, jarvis_cmd
 

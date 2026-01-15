@@ -12,25 +12,26 @@ from random import choice
 from bs4 import BeautifulSoup as bs
 
 try:
-    from pyJarvis.fns.gDrive import GDriveManager
+    from pyCore.fns.gDrive import GDriveManager
 except ImportError:
     GDriveManager = None
 from telegraph import upload_file as upl
 from telethon import Button, events
+from catbox import CatboxUploader
 from telethon.tl.types import MessageMediaWebPage
 from telethon.utils import get_peer_id
 
-from pyJarvis.fns.helper import fast_download, progress
-from pyJarvis.fns.tools import Carbon, async_searcher, get_paste, telegraph_client
-from pyJarvis.startup.loader import Loader
+from pyCore.fns.helper import fast_download, progress
+from pyCore.fns.tools import Carbon, async_searcher, get_paste, telegraph_client
+from pyCore.startup.loader import Loader
 
 from . import *
 
 # --------------------------------------------------------------------#
 telegraph = telegraph_client()
 GDrive = GDriveManager() if GDriveManager else None
+uploader = CatboxUploader()
 # --------------------------------------------------------------------#
-
 
 def text_to_url(event):
     """function to get media url (with|without) Webpage"""
@@ -45,7 +46,7 @@ def text_to_url(event):
 
 _buttons = {
     "otvars": {
-        "text": "Other Variables to set for @MyJarvis:",
+        "text": "Other Variables to set for @xamarth:",
         "buttons": [
             [
                 Button.inline("Tᴀɢ Lᴏɢɢᴇʀ", data="taglog"),
@@ -133,7 +134,7 @@ _buttons = {
         ],
     },
     "chatbot": {
-        "text": "From This Feature U can chat with ppls Via ur Assistant Bot.\n[More info](https://t.me/MyJarvis)",
+        "text": "From This Feature U can chat with ppls Via ur Assistant Bot.\n[More info](https://t.me/riotoreo)",
         "buttons": [
             [
                 Button.inline("Cʜᴀᴛ Bᴏᴛ  Oɴ", data="onchbot"),
@@ -149,14 +150,14 @@ _buttons = {
         ],
     },
     "vcb": {
-        "text": "From This Feature U can play songs in group voice chat\n\n[moreinfo](https://t.me/MyJarvis)",
+        "text": "From This Feature U can play songs in group voice chat\n\n[moreinfo](https://t.me/riotoreo)",
         "buttons": [
             [Button.inline("VC Sᴇssɪᴏɴ", data="abs_vcs")],
             [Button.inline("« Bᴀᴄᴋ", data="setter")],
         ],
     },
     "oofdm": {
-        "text": "About [Dual Mode](https://t.me/MyJarvis)",
+        "text": "About [Dual Mode](https://t.me/riotoreo)",
         "buttons": [
             [
                 Button.inline("Dᴜᴀʟ Mᴏᴅᴇ Oɴ", "dmof"),
@@ -317,7 +318,7 @@ async def update(eve):
         await eve.edit(get_string("clst_1"))
         call_back()
         await bash("git pull && pip3 install -r requirements.txt")
-        execl(sys.executable, sys.executable, "-m", "pyJarvis")
+        execl(sys.executable, sys.executable, "-m", "pyCore")
 
 
 @callback(re.compile("changes(.*)"), owner=True)
@@ -379,11 +380,14 @@ async def _(e):
     if "|" in ok:
         ok, index = ok.split("|")
     with open(ok, "r") as hmm:
-        _, key = await get_paste(hmm.read())
-    link = f"https://spaceb.in/{key}"
-    raw = f"https://spaceb.in/api/v1/documents/{key}/raw"
-    if not _:
+        _, data = await get_paste(hmm.read())
+    if not data.get("link"):
         return await e.answer(key[:30], alert=True)
+    if not key.startswith("http"):
+        link, raw = data["link"], data["raw"]
+    else:
+        link = key
+        raw = f"{key}/raw"
     if ok.startswith("addons"):
         key = "Addons"
     elif ok.startswith("vcbot"):
@@ -825,8 +829,7 @@ async def media(event):
         else:
             media = await event.client.download_media(response, "alvpc")
             try:
-                x = upl(media)
-                url = f"https://graph.org/{x[0]}"
+                url = uploader.upload_file(media)
                 remove(media)
             except BaseException as er:
                 LOGS.exception(er)
@@ -964,8 +967,7 @@ async def media(event):
             url = response.file.id
         else:
             try:
-                x = upl(media)
-                url = f"https://graph.org/{x[0]}"
+                url = uploader.upload_file(media)
                 remove(media)
             except BaseException as er:
                 LOGS.exception(er)
@@ -1234,8 +1236,7 @@ async def media(event):
             url = text_to_url(response)
         else:
             try:
-                x = upl(media)
-                url = f"https://graph.org/{x[0]}"
+                url = uploader.upload_file(media)
                 remove(media)
             except BaseException as er:
                 LOGS.exception(er)

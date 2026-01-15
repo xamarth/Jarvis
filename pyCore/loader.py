@@ -61,7 +61,7 @@ class Loader:
                 continue
             except Exception as exc:
                 modl = None
-                self._logger.error(f"pyJarvis - {self.key} - ERROR - {plugin}")
+                self._logger.error(f"pyCore - {self.key} - ERROR - {plugin}")
                 self._logger.exception(exc)
                 continue
             if _single and log:

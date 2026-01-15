@@ -7,7 +7,7 @@
     Unsplash Image Search.
 """
 
-from pyJarvis.fns.misc import unsplashsearch
+from pyCore.fns.misc import unsplashsearch
 
 from . import asyncio, download_file, get_string, os, jarvis_cmd
 

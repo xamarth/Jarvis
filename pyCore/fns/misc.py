@@ -8,8 +8,9 @@ import string
 from logging import WARNING
 from random import choice, randrange, shuffle
 from traceback import format_exc
+from catbox import CatboxUploader
 
-from pyJarvis.exceptions import DependencyMissingError
+from pyCore.exceptions import DependencyMissingError
 
 try:
     from aiohttp import ContentTypeError
@@ -177,7 +178,7 @@ async def ReTrieveFile(input_file_name):
 
 
 # ---------------- Unsplash Search ----------------
-# @New-Dev0
+
 
 
 async def unsplashsearch(query, limit=None, shuf=True):
@@ -192,7 +193,7 @@ async def unsplashsearch(query, limit=None, shuf=True):
 
 
 # ---------------- Random User Gen ----------------
-# @xditya
+# @xamarth
 
 
 async def get_random_user_data():
@@ -290,15 +291,7 @@ class Quotly:
         async def telegraph(file_):
             file = file_ + ".png"
             Image.open(file_).save(file, "PNG")
-            files = {"file": open(file, "rb").read()}
-            uri = (
-                "https://graph.org"
-                + (
-                    await async_searcher(
-                        "https://graph.org/upload", post=True, data=files, re_json=True
-                    )
-                )[0]["src"]
-            )
+            uri = uploader.upload_file(file)
             os.remove(file)
             os.remove(file_)
             return uri

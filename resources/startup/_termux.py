@@ -14,7 +14,7 @@ def clear():
 
 
 MANDATORY_REQS = [
-    "https://github.com/New-dev0/Telethon/archive/Cartoon.zip",
+    "https://github.com/xamarth/Telethon/archive/Cartoon.zip",
     "gitpython",
     "enhancer",
     "telegraph",

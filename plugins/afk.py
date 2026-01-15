@@ -10,8 +10,8 @@ import asyncio
 from telegraph import upload_file as uf
 from telethon import events
 
-from pyJarvis.dB.afk_db import add_afk, del_afk, is_afk
-from pyJarvis.dB.base import KeyManager
+from pyCore.dB.afk_db import add_afk, del_afk, is_afk
+from pyCore.dB.base import KeyManager
 
 from . import (
     LOG_CHANNEL,

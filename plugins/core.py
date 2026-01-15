@@ -7,7 +7,7 @@ __doc__ = get_help("help_core")
 
 import os
 
-from pyJarvis.startup.loader import load_addons
+from pyCore.startup.loader import load_addons
 
 from . import LOGS, async_searcher, eod, get_string, safeinstall, jarvis_cmd, un_plug
 

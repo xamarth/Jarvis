@@ -14,7 +14,7 @@ import math
 import shutil
 from random import choice
 
-from pyJarvis.fns import some_random_headers
+from pyCore.fns import some_random_headers
 
 from . import (
     HOSTED_ON,

@@ -13,8 +13,8 @@ from telethon.tl.types import InputStickerSetItem as SetItem
 from telethon.tl.types import InputStickerSetShortName, User
 from telethon.utils import get_display_name, get_input_document
 
-from pyJarvis.fns.misc import Quotly
-from pyJarvis.fns.tools import TgConverter
+from pyCore.fns.misc import Quotly
+from pyCore.fns.tools import TgConverter
 
 from . import LOGS, asst, asst_cmd, udB
 
@@ -92,7 +92,7 @@ async def kang_cmd(jar):
                     stickers=[SetItem(file, emoji=emoji)],
                     videos=video,
                     animated=animated,
-                    software="@MyJarvis",
+                    software="@xamarth",
                 )
             )
         except Exception as er:

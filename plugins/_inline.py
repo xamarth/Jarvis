@@ -10,10 +10,10 @@ from telethon import Button
 from telethon.tl.types import InputWebDocument, Message
 from telethon.utils import resolve_bot_file_id
 
-from pyJarvis._misc._assistant import callback, in_pattern
-from pyJarvis.dB._core import HELP, LIST
-from pyJarvis.fns.helper import gen_chlog, time_formatter, updater
-from pyJarvis.fns.misc import split_list
+from pyCore._misc._assistant import callback, in_pattern
+from pyCore.dB._core import HELP, LIST
+from pyCore.fns.helper import gen_chlog, time_formatter, updater
+from pyCore.fns.misc import split_list
 
 from . import (
     HNDLR,

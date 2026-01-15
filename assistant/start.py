@@ -7,9 +7,9 @@ from telethon import Button, events
 from telethon.errors.rpcerrorlist import MessageDeleteForbiddenError
 from telethon.utils import get_display_name
 
-from pyJarvis._misc import SUDO_M, owner_and_sudos
-from pyJarvis.dB.base import KeyManager
-from pyJarvis.fns.helper import inline_mention
+from pyCore._misc import SUDO_M, owner_and_sudos
+from pyCore.dB.base import KeyManager
+from pyCore.fns.helper import inline_mention
 from strings import get_string
 
 from . import *
@@ -60,7 +60,7 @@ _start = [
 @callback("ownerinfo")
 async def own(event):
     msg = Owner_info_msg.format(
-        mention = inline_mention(event.sender), me=inline_mention(jarvis_bot.me)
+        mention=event.sender.mention, me=inline_mention(jarvis_bot.me)
     )
     if custom_info:
         msg += "\n\n• Powered by **@MyJarvis**"

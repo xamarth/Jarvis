@@ -1,4 +1,4 @@
-# Jarvis - UserBot
+# xamarth
 
 from . import *
 
@@ -9,7 +9,7 @@ START = """
 ✘  /help : Get This Message.
 ✘  /repo : Get Bot's Repo..
 
-🧑‍💻 Join **@MyJarvis**
+
 """
 
 ADMINTOOLS = """✘ **AdminTools** ✘

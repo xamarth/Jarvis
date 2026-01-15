@@ -9,17 +9,18 @@ import requests
 from telethon import Button, events
 from telethon.tl import functions, types  # pylint:ignore
 
-from pyJarvis import *
-from pyJarvis._misc._assistant import asst_cmd, callback, in_pattern
-from pyJarvis._misc._decorators import jarvis_cmd
-from pyJarvis._misc._wrappers import eod, eor
-from pyJarvis.dB import DEVLIST, JARVIS_IMAGES
-from pyJarvis.fns.helper import *
-from pyJarvis.fns.misc import *
-from pyJarvis.fns.tools import *
-from pyJarvis.startup._database import _BaseDatabase as Database
-from pyJarvis.version import __version__, jarvis_version
+from pyCore import *
+from pyCore._misc._assistant import asst_cmd, callback, in_pattern
+from pyCore._misc._decorators import jarvis_cmd
+from pyCore._misc._wrappers import eod, eor
+from pyCore.dB import DEVLIST, JARVIS_IMAGES
+from pyCore.fns.helper import *
+from pyCore.fns.misc import *
+from pyCore.fns.tools import *
+from pyCore.startup._database import _BaseDatabase as Database
+from pyCore.version import __version__, jarvis_version
 from strings import get_help, get_string
+from pyCore.fns.FastTelethon import upload_file
 
 udB: Database
 
@@ -57,8 +58,6 @@ STUFF = {}
 # Feel Free to Add Any other...
 
 NOSPAM_CHAT = [
-    -1002482565837,  # JarvisSupportChat
-    -1002482565837,  # JarvisSupportChat
     -1001109500936,  # TelethonChat
     -1001050982793,  # Python
     -1001256902287,  # DurovsChat

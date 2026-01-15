@@ -10,7 +10,7 @@
 """
 from datetime import timedelta
 
-from pyJarvis.fns.admins import ban_time
+from pyCore.fns.admins import ban_time
 
 from . import get_string, jarvis_cmd
 
