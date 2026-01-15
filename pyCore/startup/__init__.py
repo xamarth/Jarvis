@@ -87,8 +87,3 @@ if run_as_module:
     LOGS.info(f"py-Jarvis Version - {__pyCore__}")
     LOGS.info(f"Telethon Version - {__version__} [Layer: {LAYER}]")
     LOGS.info(f"Jarvis Version - {jarvis_version} [{HOSTED_ON}]")
-
-    try:
-        from safety.tools import *
-    except ImportError:
-        LOGS.error("'safety' package not found!")
