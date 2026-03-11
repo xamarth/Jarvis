@@ -457,7 +457,8 @@ if udB.get_key("PMSETTING"):
         if user.id in DEVLIST:
             return await eor(
                 e,
-                "`Lol, He is my Developer\nHe Can't Be DisApproved.`",
+                # "`Lol, He is my Developer\nHe Can't Be DisApproved.`",
+                "`This is a Developer Account.\nCannot Be DisApproved.`",
             )
         if keym.contains(user.id):
             keym.remove(user.id)

@@ -6,12 +6,6 @@ import re
 import time
 
 from telethon import Button
-
-try:
-    from youtubesearchpython import Playlist, VideosSearch
-except ImportError:
-    Playlist, VideosSearch = None, None
-
 from yt_dlp import YoutubeDL
 
 from .. import LOGS, udB
@@ -38,11 +32,24 @@ async def ytdl_progress(k, start_time, event):
 
 
 def get_yt_link(query):
-    search = VideosSearch(query, limit=1).result()
+    # search = VideosSearch(query, limit=1).result()
+    ydl_opts = {
+        "quiet": True,
+        "default_search": "ytsearch1",
+        "skip_download": True,
+        "nocheckcertificate": True,
+    }
     try:
-        return search["result"][0]["link"]
-    except IndexError:
-        return
+    #     return search["result"][0]["link"]
+    # except IndexError:
+    #     return
+        with YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(query, download=False)
+            if "entries" in info and info["entries"]:
+                return info["entries"][0].get("webpage_url")
+    except Exception as e:
+        LOGS.error(f"Error al obtener el enlace: {e}")
+        return None
 
 
 async def download_yt(event, link, ytd):
@@ -157,8 +164,24 @@ async def download_yt(event, link, ytd):
         pass
 
 
-# ---------------YouTube Downloader Inline---------------
+async def get_videos_link(url):
+    to_return = []
 
+    ydl_opts = {
+        "quiet": True,
+        "extract_flat": True,
+    }
+
+    with YoutubeDL(ydl_opts) as ydl:
+        info = ydl.extract_info(url, download=False)
+        if 'entries' in info:
+            for entry in info['entries']:
+                to_return.append(entry['url'])
+
+    return to_return
+
+
+# ---------------YouTube Downloader Inline---------------
 
 def get_formats(type, id, data):
     if type == "audio":
@@ -249,15 +272,29 @@ def extract_info(url, opts):
     return YoutubeDL(opts).extract_info(url=url, download=False)
 
 
-@run_async
-def get_videos_link(url):
+# @run_async
+async def get_videos_link(url):
     to_return = []
-    regex = re.search(r"\?list=([(\w+)\-]*)", url)
-    if not regex:
-        return to_return
-    playlist_id = regex.group(1)
-    videos = Playlist(playlist_id)
-    for vid in videos.videos:
-        link = re.search(r"\?v=([(\w+)\-]*)", vid["link"]).group(1)
-        to_return.append(f"https://youtube.com/watch?v={link}")
+    # regex = re.search(r"\?list=([(\w+)\-]*)", url)
+    # if not regex:
+    #     return to_return
+    # playlist_id = regex.group(1)
+    # videos = Playlist(playlist_id)
+    # for vid in videos.videos:
+    #     link = re.search(r"\?v=([(\w+)\-]*)", vid["link"]).group(1)
+    #     to_return.append(f"https://youtube.com/watch?v={link}")
+    # return to_return
+    ydl_opts = {
+        "quiet": True,
+        "extract_flat": True,
+    }
+
+    with YoutubeDL(ydl_opts) as ydl:
+        info = ydl.extract_info(url, download=False)
+        if 'entries' in info:
+            for entry in info['entries']:
+                to_return.append(entry['url'])
+
     return to_return
+
+# xamarth
